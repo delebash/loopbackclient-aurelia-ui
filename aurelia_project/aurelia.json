@@ -25,6 +25,12 @@
     "fileExtension": ".html",
     "source": "src/**/*.html"
   },
+  "svgProcessor": {
+    "id": "maximum",
+    "displayName": "Maximum Minification",
+    "fileExtension": ".html",
+    "source": "src/**/*.svg"
+  },
   "sassProcessor": {
     "id": "sass",
     "displayName": "Sass",
@@ -88,9 +94,10 @@
           "name": "text",
           "extensions": [
             ".html",
-            ".css"
+            ".css",
+            ".svg"
           ],
-          "stub": true
+          "stub": false
         }
       ]
     },

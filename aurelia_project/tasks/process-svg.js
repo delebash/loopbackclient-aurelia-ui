@@ -5,8 +5,8 @@ import project from '../aurelia.json';
 import {build} from 'aurelia-cli';
 
 export default function processMarkup() {
-  return gulp.src(project.markupProcessor.source)
-    .pipe(changedInPlace({firstPass:true}))
+  return gulp.src(project.svgProcessor.source)
+
     .pipe(htmlmin({
       removeComments: true,
       collapseWhitespace: true,
