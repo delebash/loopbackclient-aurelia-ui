@@ -1,0 +1,21 @@
+<template>
+<ui-viewport>
+  <ui-app-header>
+    <ui-drawer-toggle drawer.bind="menuDrawer"></ui-drawer-toggle>
+    <ui-app-title src="images/logo.png">
+      <h6>App Title</h6>
+    </ui-app-title>
+  </ui-app-header>
+
+  <ui-drawer ref="menuDrawer" scroll close-on-click>
+    App Menu
+  </ui-drawer>
+
+  <ui-router-view></ui-router-view>
+
+  <ui-app-footer>
+    <span>Version x.x</span>
+    <span>© 2017</span>
+  </ui-app-footer>
+</ui-viewport>
+</template>
