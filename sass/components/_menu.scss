@@ -1,0 +1,268 @@
+//
+// @description :
+// @author      : Adarsh Pastakia
+// @copyright   : 2017
+// @license     : MIT
+
+a.ui-menu-item {
+  line-height: 2.5em;
+  margin     : 0.2em 0;
+  position   : relative;
+  color      : $menu-link-text;
+  max-width  : 20em;
+  padding    : 0 0.5em;
+  text-align : left;
+  text-align : start;
+  @include ellipsis();
+  @include transition(all .5s);
+
+  .ui-menu-label {
+    padding: 0 0.5em;
+    @include transition(font-size 0.5s);
+  }
+
+  .ui-menu-icon {
+    line-height        : 1.2;
+    background-position: left center;
+    background-repeat  : no-repeat;
+    background-size    : 1em 1em;
+    @include transition(font-size 0.5s);
+  }
+
+  &:hover {
+    color           : $menu-link-hover-text;
+    background-color: $menu-link-hover-bg;
+  }
+
+  &:active {
+    color           : $menu-link-active-text;
+    background-color: $menu-link-active-bg;
+  }
+
+  &.ui-disabled {
+    pointer-events: none;
+    color         : $menu-link-disabled;
+  }
+
+  &.ui-active {
+    pointer-events  : none;
+    color           : $menu-link-active-text;
+    background-color: $menu-link-active-bg;
+    @include box-shadow(0 -4px 0 0 $menu-link-active-hilight inset);
+  }
+}
+
+.ui-menu-section-title {
+  color      : $menu-section-title;
+  display    : block;
+  font-size  : 0.8em;
+  line-height: 2em;
+  padding    : 0 0.5em;
+  @include ellipsis();
+}
+
+.ui-menubar {
+  z-index         : 5;
+  position        : relative;
+  @include flex(0 0 auto);
+  @include flex-row($align: center, $wrap:false);
+  background-color: $menubar-bg;
+  border-bottom   : 1px solid rgba($base-border-color,.25);
+
+  .ui-menubar-toggle {
+    cursor: pointer;
+    color : $menu-link-text;
+  }
+
+  .ui-menubar-overflow {
+    display: none;
+
+    &.ui-open {
+      display: block;
+    }
+  }
+
+  .ui-menubar-wrapper {
+    overflow: hidden;
+    @include flex(1 1 auto);
+    @include flex-row($align: stretch, $wrap:false);
+  }
+
+  .ui-menu-section {
+    display      : block;
+    overflow     : hidden;
+    margin       : 0.1em 0.2em;
+    flex         : 0 0 auto;
+    border       : 1px solid rgba($base-border-color, .5);
+    border-radius: $base-border-radius;
+
+    .ui-menu-section-title {
+      font-size  : 0.7em;
+      line-height: 1em;
+    }
+  }
+
+  .ui-menu-section-title {
+    text-align: center;
+  }
+
+  .ui-divider {
+    display: block;
+    border : {
+      left : 1px solid rgba($dark,.5);
+      right: 1px solid $light;
+    }
+    @include transform(scaleX(.5));
+    @include align-self(stretch);
+  }
+
+  a.ui-menu-item {
+    margin     : 0;
+    font-size  : 0.9em;
+    line-height: 1.5em;
+    padding    : 0.2em 0.3em;
+    white-space: nowrap;
+
+    &:hover {
+      @include box-shadow(0 -4px 0 0 $menu-link-hover-bg inset);
+    }
+
+    &.ui-active {
+      @include box-shadow(0 -4px 0 0 $menu-link-active-hilight inset);
+    }
+  }
+
+  > a.ui-menu-item {
+    border: {
+      left : 1px solid $dark;
+      right: 1px solid $light;
+    }
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.ui-menu {
+  &:not(.ui-floating) {
+    display: block;
+  }
+
+  > .ui-row {
+    @include flex-wrap(nowrap);
+    @include align-items(stretch);
+  }
+
+  > .ui-row > .ui-column {
+    @include flex-auto();
+    min-width: 8em;
+    max-width: 12em;
+  }
+
+  > .ui-row > .ui-column:not(:first-child) {
+    @include border(start, 1px solid rgba($base-border-color,.5));
+  }
+
+  &.ui-floating {
+    max-height      : 20rem;
+    background-color: $menu-dropdown-bg;
+    border-radius   : $base-border-radius;
+    position        : fixed;
+    display         : none;
+    z-index         : $z-index-floating;
+    @include box-shadow(0 0 4px 0 $base-shadow-color);
+
+    &.ui-tether-top {
+      box-shadow: 0 1px 4px 0 $base-shadow-color;
+    }
+
+    &.ui-tether-bottom {
+      box-shadow: 0 -1px 4px 0 $base-shadow-color;
+    }
+
+    &.ui-open {
+      display: block;
+    }
+
+    .ui-menu-item {
+      line-height: 2em;
+      font-size  : 0.9em;
+    }
+
+    .ui-menu-section-title {}
+
+    &.ui-tether-top {
+      border-top-left-radius : 0;
+      border-top-right-radius: 0;
+    }
+
+    &.ui-tether-bottom {
+      border-bottom-left-radius : 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .ui-menu-section {
+    display : block;
+    overflow: hidden;
+    border  : none;
+
+    .ui-menu-section-title {
+      text-align: left;
+      text-align: start;
+    }
+  }
+
+  .ui-menu-section:not(:first-child):before {
+    content: ' ';
+    display: block;
+    border : {
+      top   : 1px solid $dark;
+      bottom: 1px solid $light;
+    }
+    @include transform(scaleY(.5));
+  }
+
+  .ui-divider {
+    display: block;
+    border : {
+      top   : 1px solid $dark;
+      bottom: 1px solid $light;
+    }
+    opacity: 0.5;
+    @include transform(scaleY(.5));
+  }
+
+  .ui-menu-item {
+    display: block;
+    @include ellipsis();
+
+    &:hover {
+      @include box-shadow(4px 0 0 0 $menu-link-active-bg inset);
+    }
+
+    &.ui-active {
+      color           : $menu-link-active-text;
+      background-color: $menu-link-active-bg;
+      @include box-shadow(4px 0 0 0 $menu-link-active-hilight inset);
+    }
+  }
+}
+
+.rtl,
+[dir="rtl"] {
+  .ui-menu-item {
+    &:hover {
+      @include box-shadow(-4px 0 0 0 $menu-link-active-bg inset);
+    }
+
+    &.ui-active {
+      @include box-shadow(-4px 0 0 0 $menu-link-active-hilight inset);
+    }
+  }
+}

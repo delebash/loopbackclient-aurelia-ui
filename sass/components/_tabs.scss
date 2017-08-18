@@ -1,0 +1,171 @@
+//
+// @description :
+// @author      : Adarsh Pastakia
+// @copyright   : 2017
+// @license     : MIT
+
+.ui-tab-panel {
+  @include flex-fill();
+  @include flex-column($align:stretch);
+  overflow: hidden;
+
+  .ui-tabbar {
+    min-height: 2em;
+    @include flex-auto();
+    @include flex-row($align:stretch);
+
+    .ui-tabbar-toggle {
+      cursor: pointer;
+      color : $menu-link-text;
+      @include align-self(stretch);
+
+      &:hover {
+        box-shadow: none;
+        background: $menu-link-hover-bg;
+        color     : $menu-link-hover-text;
+      }
+    }
+
+    > .ui-tabbar-overflow {
+      display: none;
+
+      &.ui-open {
+        display: block;
+      }
+
+      > .ui-tab-button {
+        border       : none;
+        border-radius: 0;
+        padding      : 0.25em 0.5em;
+        margin       : 0 !important;
+        border-bottom: 1px solid rgba($base-border-color,.25);
+
+        &.ui-active {
+          @include box-shadow(4px 0 0 0 $tab-active-text inset);
+        }
+
+        &:hover {
+          @include box-shadow(4px 0 0 0 rgba($tab-active-text, .5) inset);
+        }
+      }
+    }
+
+    > .ui-tabbar-links {
+      @include flex-auto();
+      @include flex-row($align:center, $wrap:false);
+    }
+
+    > .ui-tabbar-buttons {
+      position: relative;
+      @include flex-fill();
+      @include flex-row($align:stretch, $wrap:false);
+    }
+
+    .ui-tab-button {
+      @include flex-row($align:center);
+      @include flex-auto();
+      z-index                : 2;
+      line-height            : 2;
+      font-size              : 0.8em;
+      padding                : 0 0.5em;
+      margin                 : 4px 2px 0;
+      border                 : 1px solid $base-border-color;
+      border-bottom-width    : 0;
+      border-top-left-radius : $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+
+      .ui-tab-icon ~ .ui-label {
+        margin-left: 5px;
+      }
+
+      .ui-label {
+        @include ellipsis();
+        max-width: 8em;
+      }
+
+      &.ui-disabled {
+        pointer-events: none;
+        color         : $muted;
+        opacity       : 0.5;
+      }
+
+      &:hover {
+        margin-top: 2px;
+        @include box-shadow(0 4px 0 0 rgba($tab-active-text, .5) inset);
+      }
+
+      &.ui-active {
+        margin-top   : 0;
+        margin-bottom: -1px;
+        font-weight  : 600;
+        color        : $tab-active-text;
+        background   : $tab-active-bg;
+        @include box-shadow(0 4px 0 0 $tab-active-text inset);
+      }
+
+      .ui-close {
+        opacity: 0.7;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .ui-tab {
+    @include flex-fill();
+    border: 1px solid $base-border-color;
+
+    &.ui-flexed {
+      @include flex-column();
+
+      > compose {
+        @include flex-column();
+        @include flex-fill();
+      }
+    }
+
+    &:not(.ui-active) {
+      display: none;
+    }
+  }
+
+  &.noborder .ui-tab {
+    border: none;
+  }
+
+  &.noborder:not(.bottom) .ui-tab-bar {
+    border-bottom: 1px solid $base-border-color;
+  }
+
+  &.noborder.bottom .ui-tab-bar {
+    border-top: 1px solid $base-border-color;
+  }
+
+  &.bottom {
+    @include flex-direction(column-reverse);
+
+    .ui-tabbar {
+      .ui-tab-button {
+        margin                    : 0 2px 4px;
+        border-top-width          : 0;
+        border-bottom-width       : 1px;
+        border-radius             : 0;
+        border-bottom-left-radius : $base-border-radius;
+        border-bottom-right-radius: $base-border-radius;
+
+        &:hover {
+          margin-bottom: 2px;
+          @include box-shadow(0 -4px 0 0 rgba($tab-active-text, .5) inset);
+        }
+
+        &.ui-active {
+          margin-top   : -1px;
+          margin-bottom: 0;
+          @include box-shadow(0 -4px 0 0 $tab-active-text inset);
+        }
+      }
+    }
+  }
+}

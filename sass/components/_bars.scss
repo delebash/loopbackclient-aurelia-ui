@@ -1,0 +1,173 @@
+//
+// @description :
+// @author      : Adarsh Pastakia
+// @copyright   : 2017
+// @license     : MIT
+
+.ui-toolbar {
+  z-index         : 5;
+  background-color: shade($base-bg, 1%);
+  border          : 1px solid rgba($base-border-color, .5);
+  border-width    : 1px 0;
+  padding         : 0.2em 0.5em;
+  @include flex-auto();
+  // @include box-shadow(0 0 1px 0 $base-border-color);
+  @include flex-row($align:center, $justify:flex-end, $wrap:false);
+
+  &.ui-start {
+    @include justify-content(flex-start);
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .ui-divider {
+    display: block;
+    margin : 0.2rem;
+    border : {
+      left : 1px solid $dark;
+      right: 1px solid $light;
+    }
+    @include transform(scaleX(.5));
+    @include align-self(stretch);
+  }
+
+   > .ui-input-group,
+  > .ui-input-wrapper {
+    margin: 0 0.25em;
+  }
+
+   > .ui-button-group,
+  > .ui-button {
+    margin: 0 0.2rem;
+  }
+}
+@include toolbar-theme(light, $light, $dark);
+@include toolbar-theme(dark, lighten($dark,5%));
+@include toolbar-theme(primary, lighten($primary,5%));
+@include toolbar-theme(secondary, lighten($secondary,5%));
+@include toolbar-theme(info, lighten($info,5%));
+@include toolbar-theme(danger, lighten($danger,5%));
+@include toolbar-theme(success, lighten($success,5%));
+@include toolbar-theme(warning, lighten($warning,5%));
+
+.ui-statsbar {
+  z-index         : 5;
+  position        : relative;
+  background-color: $base-bg;
+  border          : 1px solid rgba($base-border-color, .5);
+  border-width    : 1px 0;
+  @include flex-auto();
+  @include flex-row($align:stretch, $justify:flex-start, $wrap:false);
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.ui-small {
+    font-size: 0.7em;
+  }
+
+  .ui-stat {
+    color  : $dark;
+    padding: 0.25em 0.5em;
+    @include flex(1 0 1em);
+    @include flex-row($justify:center, $align:center, $wrap:false);
+
+    &:not(:first-child) {
+      @include border(start, 1px solid rgba($base-border-color, .5));
+    }
+
+    .ui-icon {
+      margin    : 0 0.5rem;
+      font-size : 2em;
+      text-align: center;
+    }
+
+    .ui-stat-value {
+      line-height: 1;
+      font-size  : 2em;
+      text-align : center;
+      font-weight: 600;
+    }
+
+    .ui-stat-label {
+      color      : $muted;
+      font-size  : 0.8em;
+      text-align : center;
+      font-weight: 600;
+    }
+  }
+
+  &:not(.ui-vertical).ui-icon-top {
+    .ui-stat {
+      @include flex-wrap(wrap);
+    }
+
+    .ui-stat > div {
+      @include flex(1 1 100%);
+    }
+  }
+
+  &.ui-vertical {
+    overflow: auto;
+    @include flex-direction(column);
+
+    &:first-child {
+      @include border(end, 1px solid rgba($base-border-color, .5));
+    }
+
+    &:last-child {
+      @include border(start, 1px solid rgba($base-border-color, .5));
+    }
+
+    .ui-stat {
+      max-width: 5em;
+      border   : none;
+      @include flex-direction(column);
+
+      &:not(:first-child) {
+        border-top: 1px solid rgba($base-border-color, .5);
+      }
+
+      .ui-icon {
+        margin   : 0.25em 0;
+        font-size: 1.5em;
+      }
+
+      .ui-stat-value {
+        font-size: 1.2em;
+      }
+
+      .ui-stat-label {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+@include statsbar-theme(light-bg, $dark, $light);
+@include statsbar-theme(dark-bg, $light, $dark);
+@include statsbar-theme(primary-bg, $light, lighten($primary,5%));
+@include statsbar-theme(secondary-bg, $light, lighten($secondary,5%));
+@include statsbar-theme(info-bg, $light, lighten($info,5%));
+@include statsbar-theme(danger-bg, $light, lighten($danger,5%));
+@include statsbar-theme(success-bg, $light, lighten($success,5%));
+@include statsbar-theme(warning-bg, $light, lighten($warning,5%));
+@include statsbar-theme(light, $light, inherit);
+@include statsbar-theme(dark, $dark, inherit);
+@include statsbar-theme(muted, $muted, inherit);
+@include statsbar-theme(primary, lighten($primary,5%), inherit);
+@include statsbar-theme(secondary, lighten($secondary,5%), inherit);
+@include statsbar-theme(info, lighten($info,5%), inherit);
+@include statsbar-theme(danger, lighten($danger,5%), inherit);
+@include statsbar-theme(success, lighten($success,5%), inherit);
+@include statsbar-theme(warning, lighten($warning,5%), inherit);

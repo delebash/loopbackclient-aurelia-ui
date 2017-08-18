@@ -7,8 +7,5 @@ export class Welcome{
   constructor(router){
     this.router = router
   }
-  activate(){
-    this.router.navigateToRoute('page-view');
-  }
 
 }

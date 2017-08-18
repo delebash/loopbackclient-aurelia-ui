@@ -9,6 +9,7 @@ export function configure(aurelia) {
 
     })
     .plugin('aurelia-ui-virtualization')
+    .plugin('aurelia-animator-css')
     .plugin('aurelia-ui-framework')
     .feature('resources');
 

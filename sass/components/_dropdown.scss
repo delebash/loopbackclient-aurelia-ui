@@ -1,0 +1,135 @@
+//
+// @description :
+// @author      : Adarsh Pastakia
+// @copyright   : 2017
+// @license     : MIT
+
+.ui-dropdown {
+  background : $light;
+  cursor     : pointer;
+  position   : relative;
+  display    : inline-block;
+  font-size  : 0.9em;
+  line-height: 1.8em;
+  padding    : 0 0.5em;
+
+  &:not(.ui-invalid) .ui-invalid-icon {
+    display: none;
+  }
+
+  .ui-invalid-icon {
+    color: $input-error-text;
+  }
+
+  .ui-label {
+    @include flex-row($wrap:false, $justify: space-between);
+
+    > span:first-child {
+      @include ellipsis();
+    }
+  }
+
+  .ui-caret {
+    font-size: 0.5rem;
+    position : relative;
+    top      : 0.2em;
+    margin   : 0 0.2rem;
+    color    : rgba($input-text, .5);
+  }
+
+  &:hover .ui-caret {
+    color: rgba($input-text, .85);
+  }
+
+  &.ui-open {
+    &.ui-tether-top {
+      box-shadow: 0 0 2px 0 $base-shadow-color;
+    }
+
+    &.ui-tether-bottom {
+      box-shadow: 0 0 2px 0 $base-shadow-color;
+    }
+
+    .ui-list-container {
+      display: block;
+    }
+  }
+
+  &.ui-disabled {
+    pointer-events: none;
+
+    &:after {
+      content   : '';
+      @include position(absolute, 0);
+      background: rgba($input-disabled-bg, 0.5);
+    }
+  }
+
+}
+
+.ui-list-container {
+  max-height: 20rem;
+  overflow  : auto;
+  background: $input-bg;
+
+  &.ui-floating {
+    position: fixed;
+    display : none;
+    z-index : $z-index-floating;
+
+    &.ui-tether-top {
+      box-shadow: 0 1px 2px 0 $base-shadow-color;
+    }
+
+    &.ui-tether-bottom {
+      box-shadow: 0 -1px 2px 0 $base-shadow-color;
+    }
+  }
+
+  &.ui-open {
+    display: block;
+  }
+
+  .ui-list-group {
+    color      : $muted;
+    display    : list-item;
+    font-size  : 0.8em;
+    line-height: 1.5em;
+    padding    : 0 0.5em;
+  }
+
+  .ui-list-item {
+    font-size  : 0.9em;
+    line-height: 1.8rem;
+    padding    : 0 0.5em;
+    color      : $dark;
+    cursor     : pointer;
+    display    : list-item;
+    list-style : none;
+
+    .ui-icon {
+      line-height: 1.2;
+    }
+
+    * {
+      pointer-events: none;
+    }
+
+    &.ui-disabled {
+      pointer-events: none;
+      color         : $muted;
+      background    : none;
+    }
+
+    &.ui-hilight {
+      color     : $list-hover-text;
+      background: $list-hover-bg;
+    }
+
+    &.ui-selected,
+    &:active {
+      color     : $list-selected-text;
+      background: $list-selected-bg;
+    }
+  }
+}

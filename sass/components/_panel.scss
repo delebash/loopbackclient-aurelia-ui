@@ -1,0 +1,118 @@
+//
+// @description :
+// @author      : Adarsh Pastakia
+// @copyright   : 2016
+// @license     : MIT
+
+.ui-panel-group {
+  > .ui-panel {
+    border-radius      : 0;
+    border-bottom-width: 0;
+
+    &:first-child {
+      border-top-left-radius : $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+    }
+
+    &:last-child {
+      border-bottom-width       : 1px;
+      border-bottom-left-radius : $base-border-radius;
+      border-bottom-right-radius: $base-border-radius;
+    }
+  }
+}
+
+.ui-panel {
+  overflow     : hidden;
+  position     : relative;
+  max-height   : 50rem;
+  border       : 1px solid $base-border-color;
+  border-radius: $base-border-radius;
+  @include flex-column($align:stretch);
+  @include transition(max-height .5s);
+
+  .ui-panel-body {
+    max-height: 50em;
+    position  : relative;
+    background: $base-bg;
+    @include flex(1 1 auto);
+
+    &.ui-flexed {
+      @include flex-column();
+    }
+  }
+
+  &.ui-collapse {
+    .ui-header-button.ui-collapse .ui-icon {
+      @include transform(rotate(-180deg));
+    }
+
+    max-height: 2.1em !important;
+  }
+
+  &.ui-expand {
+    height    : auto !important;
+    max-height: none !important;
+    z-index   : $z-index-dialog;
+    @include position(absolute, .5em);
+  }
+}
+
+.ui-header {
+  line-height  : 2em;
+  padding      : 0 0.5em;
+  background   : $base-bg;
+  text-shadow  : -1px -1px 0 rgba(128,128,128, .1);
+  border-bottom: 1px solid rgba($base-border-color, .3);
+  @include flex-auto();
+  @include flex-row($align:center, $wrap:false);
+
+  .ui-header-title {
+    @include ellipsis();
+
+    .ui-icon {
+      margin: 0 0.25em;
+    }
+  }
+
+  .ui-header-tool {
+    line-height: 1;
+  }
+
+  .ui-header-button {
+    color        : rgba($base-text, .7);
+    background   : lighten($base-bg, 2%);
+    border-radius: $base-border-radius;
+    border       : 1px solid rgba(shade($base-bg, 20%), .5);
+    text-shadow  : -1px -1px 0 rgba(0, 0, 0, .1);
+    line-height  : 1.5;
+    padding      : 0 0.5em;
+    margin       : 0 0.25em;
+
+    .ui-icon {
+      margin-top: -.25em;
+      @include transition(transform .5s);
+      @include transform-origin(50% 50% 0);
+    }
+
+    &:disabled {
+      opacity       : 0.5;
+      pointer-events: none;
+    }
+
+    &:hover {
+      color       : rgba($base-text, .9);
+      border-color: rgba(shade($base-bg, 40%), .5);
+    }
+
+    &:active {}
+  }
+}
+@include header-theme(dark, $dark);
+@include header-theme(light, $light, $secondary);
+@include header-theme(primary, $primary);
+@include header-theme(secondary, $secondary);
+@include header-theme(info, $info);
+@include header-theme(danger, $danger);
+@include header-theme(success, $success);
+@include header-theme(warning, $warning);
